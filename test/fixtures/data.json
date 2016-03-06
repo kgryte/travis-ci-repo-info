@@ -2,29 +2,29 @@
   {
     "id": 7134866,
     "slug": "math-io/erf",
+    "active": true,
     "description": "Error function.",
-    "public_key": "",
     "last_build_id": 111133594,
     "last_build_number": "16",
-    "last_build_status": 0,
-    "last_build_result": 0,
+    "last_build_state": "passed",
     "last_build_duration": 856,
     "last_build_language": null,
     "last_build_started_at": "2016-02-23T05:03:56Z",
-    "last_build_finished_at": "2016-02-23T05:09:07Z"
+    "last_build_finished_at": "2016-02-23T05:09:07Z",
+    "github_language": "JavaScript"
   },
   {
     "id": 7134867,
     "slug": "math-io/erfc",
+    "active": true,
     "description": "Complementary error function.",
-    "public_key": "",
     "last_build_id": 111137768,
     "last_build_number": "5",
-    "last_build_status": 0,
-    "last_build_result": 0,
+    "last_build_state": "passed",
     "last_build_duration": 1068,
     "last_build_language": null,
     "last_build_started_at": "2016-02-23T05:45:25Z",
-    "last_build_finished_at": "2016-02-23T05:51:22Z"
+    "last_build_finished_at": "2016-02-23T05:51:22Z",
+    "github_language": "JavaScript"
   }
 ]
