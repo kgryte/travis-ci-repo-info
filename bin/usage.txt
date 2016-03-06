@@ -1,0 +1,9 @@
+
+Usage: travisrepoinfo [options] slug1 slug2 ...
+
+Options:
+
+  -h,  --help               Print this message.
+  -V,  --version            Print the package version.
+       --token token        Travis CI access token.
+
