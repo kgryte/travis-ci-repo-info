@@ -3,8 +3,7 @@
 function getOpts() {
 	var opts = {
 		'repos': [
-			'math-io/erf',
-			'math-io/erfc'
+			'math-io/erf'
 		],
 		'token': 'abcdef123!'
 	};
