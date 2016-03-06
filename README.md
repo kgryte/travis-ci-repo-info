@@ -59,7 +59,7 @@ function clbk( error, results ) {
 ```
 
 The `function` accepts the following `options`:
-*	__repos__: `array` of Github repository slugs (*required*). A `slug` must obey the format `:owner/:repo`.
+*	__repos__: `array` of Github repository slugs (*required*). A `slug` should obey the format `:owner/:repo`.
 *	__token__: Travis CI [access token][travis-token].
 
 To [authenticate][travis-token] with Travis CI, set the [`token`][travis-token] option.
@@ -162,7 +162,7 @@ Options:
 
 ### Notes
 
-*	In addition to the [`token`][travis-token] option, the [token][travis-token] may also be specified by a [`TRAVISCI_TOKEN`][travis-token] environment variable. The command-line option __always__ takes precedence.
+*	In addition to the [`token`][travis-token] option, the [token][travis-token] may be specified by a [`TRAVISCI_TOKEN`][travis-token] environment variable. The command-line option __always__ takes precedence.
 *	If a repository's [info][travis-repo-info] is successfully resolved, the repository info is written to `stdout`.
 *	If a repository's [info][travis-repo-info] cannot be resolved due to a downstream `error` (failure), the repository `slug` (and its associated `error`) is written to `sterr`.
 *	Output order is __not__ guaranteed to match input order.
@@ -177,7 +177,7 @@ $ DEBUG=* travisrepoinfo --token <token> math-io/erfinv
 # => {...}
 ```
 
-Setting the access [token][github-token] using an environment variable:
+Setting the access [token][travis-token] using an environment variable:
 
 ``` bash
 $ DEBUG=* TRAVISCI_TOKEN=<token> travisrepoinfo math-io/erfinv
