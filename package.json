@@ -13,7 +13,8 @@
     }
   ],
   "bin": {
-    "travisrepoinfo": "./bin/cli"
+    "travisrepoinfo": "./bin/cli",
+    "travis-ci-repo-info": "./bin/cli"
   },
   "scripts": {
     "test": "if [ \"${TRAVIS}\" ]; then npm run test-ci; else npm run test-local; fi",
