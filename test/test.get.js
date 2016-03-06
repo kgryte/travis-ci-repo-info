@@ -103,7 +103,7 @@ tape( 'the returned JSON object has a `meta` field which contains meta data docu
 	function request( opts, clbk ) {
 		setTimeout( onTimeout, 0 );
 		function onTimeout() {
-			clbk( null, data[ 0 ] );
+			clbk( null, {'repo':data[0]} );
 		}
 	}
 
@@ -146,7 +146,7 @@ tape( 'the returned JSON object has a `data` field which contains a resource has
 	function request( opts, clbk ) {
 		setTimeout( onTimeout, 0 );
 		function onTimeout() {
-			clbk( null, data[ 0 ] );
+			clbk( null, {'repo':data[0]} );
 		}
 	}
 
@@ -246,7 +246,7 @@ tape( 'the function resolves multiple resources', function test( t ) {
 			var err;
 			count += 1;
 			if ( count < 2 ) {
-				return clbk( null, data[ count ] );
+				return clbk( null, {'repo':data[count]} );
 			}
 			if ( count === 2 ) {
 				err = {
