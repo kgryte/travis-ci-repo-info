@@ -61,6 +61,7 @@ function clbk( error, results ) {
 The `function` accepts the following `options`:
 *	__repos__: `array` of Github repository slugs (*required*). A `slug` should obey the format `:owner/:repo`.
 *	__token__: Travis CI [access token][travis-token].
+*	__hostname__: endpoint hostname. Default: `'api.travis-ci.org'`.
 
 To [authenticate][travis-token] with Travis CI, set the [`token`][travis-token] option.
 
@@ -68,6 +69,17 @@ To [authenticate][travis-token] with Travis CI, set the [`token`][travis-token] 
 var opts = {
 	'repos': ['kgryte/utils-copy'],
 	'token': 'tkjorjk34ek3nj4!'
+};
+
+repoinfo( opts, clbk );
+```
+
+By default, the `function` retrieves [repository info][travis-repo-info] from the Travis CI API for open source. To retrieve from a different [Travis CI API][travis-api] endpoint, set the `hostname` option.
+
+``` javascript
+var opts = {
+	'repos': ['kgryte/utils-deep-get'],
+	'hostname': 'api.travis-ci.com'
 };
 
 repoinfo( opts, clbk );
@@ -84,7 +96,8 @@ var opts = {
 		'math-io/gamma',
 		'math-io/factorial'
 	],
-	'token': 'tkjorjk34ek3nj4!'
+	'token': 'tkjorjk34ek3nj4!',
+	'hostname': 'api.travis-ci.org'
 };
 
 var get = repoinfo.factory( opts, clbk );
@@ -156,6 +169,7 @@ Options:
 
   -h,  --help               Print this message.
   -V,  --version            Print the package version.
+       --hostname host      Hostname. Default: api.travis-ci.org.
        --token token        Travis CI access token.
 ```
 
@@ -285,5 +299,6 @@ Copyright &copy; 2016. Athan Reines.
 [istanbul]: https://github.com/gotwarlost/istanbul
 [testling]: https://ci.testling.com
 
+[travis-api]: https://docs.travis-ci.com/api
 [travis-repo-info]: https://docs.travis-ci.com/api?http#repositories
 [travis-token]: https://github.com/kgryte/travis-ci-access-token
