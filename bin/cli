@@ -112,7 +112,7 @@ if ( args._.length ) {
 			opts.repos = [ slug ];
 		}
 	} catch ( err ) {
-		// error will be addressed later
+		throw new Error( 'invalid invocation. Must either provide repository slugs or run the command in a .git repository.' );
 	}
 }
 // if ( args.useragent ) {
