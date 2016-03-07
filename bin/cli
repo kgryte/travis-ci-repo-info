@@ -102,13 +102,17 @@ opts = {};
 if ( args._.length ) {
 	opts.repos = args._;
 } else {
-	// Attempt to infer from `git config`:
-	slug = exec( 'git config remote.origin.url', {'cwd': cwd()} );
-	slug = slug.toString().replace( eol, '' );
-	slug = slug.match( re );
-	if ( slug ) {
-		slug = slug[ 1 ] + '/' + slug[ 2 ];
-		opts.repos = [ slug ];
+	// Attempt to infer from `git config`...
+	try {
+		slug = exec( 'git config remote.origin.url', {'cwd': cwd()} );
+		slug = slug.toString().replace( eol, '' );
+		slug = slug.match( re );
+		if ( slug ) {
+			slug = slug[ 1 ] + '/' + slug[ 2 ];
+			opts.repos = [ slug ];
+		}
+	} catch ( err ) {
+		// error will be addressed later
 	}
 }
 // if ( args.useragent ) {
