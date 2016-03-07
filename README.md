@@ -162,6 +162,13 @@ Options:
 
 ### Notes
 
+*	If a `slug` is __not__ provided, the implementation will attempt to infer a `slug` by executing
+
+	```
+	git config remote.origin.url
+	```
+	
+	in the current working directory.
 *	In addition to the [`token`][travis-token] option, the [token][travis-token] may be specified by a [`TRAVISCI_TOKEN`][travis-token] environment variable. The command-line option __always__ takes precedence.
 *	If a repository's [info][travis-repo-info] is successfully resolved, the repository info is written to `stdout`.
 *	If a repository's [info][travis-repo-info] cannot be resolved due to a downstream `error` (failure), the repository `slug` (and its associated `error`) is written to `sterr`.

@@ -7,6 +7,9 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var parseArgs = require( 'minimist' );
 var notifier = require( 'update-notifier' );
+var exec = require( 'child_process' ).execSync;
+var cwd = require( 'utils-cwd' );
+var eol = require( 'regex-eol' );
 var pkg = require( './../package.json' );
 var opts = require( './opts.json' );
 var get = require( './../lib' );
@@ -15,7 +18,35 @@ var get = require( './../lib' );
 // VARIABLES //
 
 var token;
+var slug;
 var args;
+
+/**
+* REGEX: /(?:github\.com)\/(?:([^\s\/]+)\/([^\s\/]+)[\/\.])/
+*	Captures an `owner` and a `repo` from a Github URL.
+*
+*	(?:)
+*		-	capture but do not remember (hostname)
+*	github\.com
+*		-	hostname
+*	\/
+*		-	match a / literal
+*	(?:)
+*		-	capture but do not remember (path)
+*	()
+*		-	capture (owner)
+*	[^\s\/]+
+*		-	match anything but a space or / literal 1 or more times
+*	\/
+*		-	match a / literal
+*	()
+*		-	capture (repo)
+*	[^\s\/]+
+*		-	match anything but a space or / literal 1 or more times
+*	[\/\.]
+*		-	match either a / or . literal
+*/
+var re = /(?:github\.com)\/(?:([^\s\/]+)\/([^\s\/]+)[\/\.])/;
 
 
 // FUNCTIONS //
@@ -68,7 +99,18 @@ if ( args.version ) {
 
 opts = {};
 
-opts.repos = args._;
+if ( args._.length ) {
+	opts.repos = args._;
+} else {
+	// Attempt to infer from `git config`:
+	slug = exec( 'git config remote.origin.url', {'cwd': cwd()} );
+	slug = slug.toString().replace( eol, '' );
+	slug = slug.match( re );
+	if ( slug ) {
+		slug = slug[ 1 ] + '/' + slug[ 2 ];
+		opts.repos = [ slug ];
+	}
+}
 // if ( args.useragent ) {
 // 	opts.useragent = args.useragent;
 // }
