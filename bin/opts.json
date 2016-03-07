@@ -1,6 +1,7 @@
 {
 	"string": [
 		"token",
+		"hostname",
 		"useragent"
 	],
 	"boolean": [

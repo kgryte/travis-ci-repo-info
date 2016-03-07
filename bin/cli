@@ -118,6 +118,9 @@ if ( args._.length ) {
 // if ( args.useragent ) {
 // 	opts.useragent = args.useragent;
 // }
+if ( args.hostname ) {
+	opts.hostname = args.hostname;
+}
 if ( args.token ) {
 	token = args.token;
 }
