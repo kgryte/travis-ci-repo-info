@@ -48,6 +48,36 @@ tape( 'function returns an error to a provided callback if an error is encounter
 	}
 });
 
+tape( 'function returns an error to a provided callback if an error is encountered when fetching resources (callback only called once)', function test( t ) {
+	var opts;
+	var get;
+
+	get = proxyquire( './../lib/get.js', {
+		'travis-ci-get': request
+	});
+
+	opts = getOpts();
+	opts.repos.push( 'math-io/erfc' );
+
+	get( opts, done );
+
+	function request( opts, clbk ) {
+		setTimeout( onTimeout, 0 );
+		function onTimeout() {
+			clbk({
+				'status': 500,
+				'message': 'bad request'
+			});
+		}
+	}
+
+	function done( error ) {
+		t.equal( error.status, 500, 'equal status' );
+		t.equal( error.message, 'bad request', 'equal message' );
+		t.end();
+	}
+});
+
 tape( 'the function returns a JSON object upon attempting to resolve all specified resources', function test( t ) {
 	var opts;
 	var get;
